@@ -1,0 +1,66 @@
+body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.memory-game {
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite o efeito 3D ao virar a carta */
+    perspective: 1000px;
+}
+
+.memory-card {
+    width: calc(25% - 10px); /* 4 colunas com algum espaço */
+    height: calc(33.333% - 10px); /* 3 linhas (para 12 cartas) */
+    margin: 5px;
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+    cursor: pointer;
+}
+
+/* Estado da carta virada (mostra o conteúdo) */
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+.front-face, .back-face {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    position: absolute;
+    border-radius: 5px;
+    background: #4a5460;
+    /* Esconde o lado de trás do elemento virado */
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+}
+
+.front-face {
+    /* A "face" da carta (o ícone ou a imagem) */
+    transform: rotateY(180deg);
+    background-color: #e74c3c; /* Cor para o conteúdo visível */
+}
+
+/* Impede que cartas combinadas (match) sejam clicáveis */
+.memory-card.match {
+    cursor: default;
+}
